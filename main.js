@@ -28,8 +28,8 @@ function createString(data) {
 		}
 	}
 	password = password.charAt(0).toUpperCase() + password.substr(1);
-	password += numbers;
-	words += numbers;
+	password += numbers + symbol;
+	words += numbers + ' ' + symbol;
 	let retArray = [];
 	retArray.push(password);
 	retArray.push(words);
