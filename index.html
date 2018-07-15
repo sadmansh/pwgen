@@ -21,10 +21,17 @@
 	</header>
 	<main>
 		<div class="container">
+			<div class="about">
+				<p>Generate easy-to-remember passwords with just a click!</p>
+			</div>
 			<input type="text" id="password-field">
 			<div class="buttons">
 				<button id="generate-button" onclick="generatePassword();">Generate Password</button>
 				<button id="copy-button" onclick="copyPass();">Copy</button>
+			</div>
+			<div class="remember">
+				<p>Here's how you can remember your password:</p>
+				<p id="words"></p>
 			</div>
 		</div>
 	</main>

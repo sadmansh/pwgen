@@ -4,7 +4,7 @@ request.open('GET', 'https://raw.githubusercontent.com/dariusk/corpora/master/da
 request.onload = function() {
 	if (request.status >= 200 && request.status < 400) {
 		data = JSON.parse(request.responseText);
-		console.log("Data successfully fetched.");
+		// console.log("Data successfully fetched.");
 	} else {
 		console.log('Error fetching data.');
 	}
@@ -41,13 +41,14 @@ function generatePassword() {
 	var password = retArray[0];
 	var words = retArray[1];
 	document.getElementById('password-field').value = password;
-	console.log(`Password is: ${password}`);
-	console.log(words);
+	// console.log(`Password is: ${password}`);
+	document.getElementById('words').innerHTML = words;
+	// console.log(words);
 }
 
 function copyPass() {
 	var copyText = document.getElementById('password-field');
 	copyText.select();
 	document.execCommand("copy");
-	alert("Copied the text: " + copyText.value);
+	// alert("Copied the text: " + copyText.value);
 }

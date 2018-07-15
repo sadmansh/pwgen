@@ -95,3 +95,51 @@ main {
 	letter-spacing: .5px;
 	color: #ffffff;
 }
+
+p {
+	line-height: 1.75;
+	font-family: inherit;
+	font-weight: 300;
+	color: #777777;
+}
+
+#words {
+	display: block;
+	margin: 1rem 0;
+	font-size: 1.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
