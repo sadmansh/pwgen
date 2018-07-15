@@ -1,0 +1,56 @@
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+body {
+	background: #ffffff;
+	font-family: 'Open Sans';
+}
+
+main {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: center;
+	-ms-align-items: center;
+	align-items: center;
+	height: 600px;
+}
+
+.container {
+	display: block;
+	width: 540px;
+	text-align: center;
+}
+
+#password-field {
+	display: block;
+	margin: 0 auto;
+	padding: 1rem 3rem;
+	width: 100%;
+	outline: none;
+	border: none;
+	border-bottom: 1px solid #777777;
+	font-family: inherit;
+	font-size: 1.5rem;
+	font-weight: 300;
+	text-align: center;
+}
+
+#generate-button {
+	display: block;
+	margin: 3rem auto;
+	padding: 1rem 3rem;
+	outline: none;
+	border: none;
+	background: #6c63ff;
+	font-family: inherit;
+	font-size: 1.25rem;
+	font-weight: 300;
+	letter-spacing: .5px;
+	color: #ffffff;
+}
