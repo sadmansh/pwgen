@@ -25,7 +25,7 @@ header {
 	-ms-align-items: center;
 	align-items: center;
 	margin: 0 auto;
-	padding: 1rem 0;
+	padding: 1rem;
 	max-width: 960px;
 }
 
@@ -59,6 +59,7 @@ main {
 	-ms-align-items: center;
 	align-items: center;
 	height: 660px;
+	padding: 0 1rem;
 }
 
 .container {
@@ -81,11 +82,15 @@ main {
 	text-align: center;
 }
 
+.buttons {
+	margin: 3rem auto;
+}
+
 #generate-button,
 #copy-button {
 	display: inline-block;
-	margin: 3rem auto;
 	padding: 1rem 3rem;
+	margin-bottom: 1rem;
 	outline: none;
 	border: none;
 	background: #6c63ff;
