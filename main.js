@@ -44,3 +44,10 @@ function generatePassword() {
 	console.log(`Password is: ${password}`);
 	console.log(words);
 }
+
+function copyPass() {
+	var copyText = document.getElementById('password-field');
+	copyText.select();
+	document.execCommand("copy");
+	alert("Copied the text: " + copyText.value);
+}

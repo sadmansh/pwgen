@@ -10,16 +10,26 @@
 </head>
 <body>
 	<header>
-		
+		<div class="header-container">
+			<h1>pwgen</h1>
+			<nav>
+				<ul class="menu">
+					<li><a href="https://github.com/sadmansh/pwgen" target="_blank">GitHub</a></li>
+				</ul>
+			</nav>
+		</div>
 	</header>
 	<main>
 		<div class="container">
 			<input type="text" id="password-field">
-			<button id="generate-button" onclick="generatePassword();">Generate Password</button>
+			<div class="buttons">
+				<button id="generate-button" onclick="generatePassword();">Generate Password</button>
+				<button id="copy-button" onclick="copyPass();">Copy</button>
+			</div>
 		</div>
 	</main>
 	<footer>
-		<p>@sadmansh</p>
+		<p><a href="https://sadmansh.com" target="_blank">sadmansh.com</a></p>
 	</footer>
 </body>
 </html>
