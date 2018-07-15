@@ -58,7 +58,7 @@ main {
 	justify-content: center;
 	-ms-align-items: center;
 	align-items: center;
-	height: 600px;
+	height: 660px;
 }
 
 .container {
@@ -109,8 +109,9 @@ p {
 	font-size: 1.5rem;
 }
 
-
-
+footer p { 
+	margin: 0 auto;
+}
 
 
 
