@@ -1,5 +1,5 @@
 // Get JSON word list
-var request = new XMLHttpRequest();
+let request = new XMLHttpRequest();
 request.open('GET', 'https://raw.githubusercontent.com/dariusk/corpora/master/data/words/common.json', true);
 request.onload = function() {
 	if (request.status >= 200 && request.status < 400) {
@@ -15,11 +15,11 @@ request.onerror = function() {
 request.send();
 
 function createString(data) {
-	var numbers = Math.floor(Math.random() * 99);
-	var symbols = ['!', '@', '$', '&', '#', '?'];
-	var symbol = symbols[Math.floor(Math.random() * symbols.length)];
-	var words = '';
-	var password = '';
+	let numbers = Math.floor(Math.random() * 99);
+	let symbols = ['!', '@', '$', '&', '#', '?'];
+	let symbol = symbols[Math.floor(Math.random() * symbols.length)];
+	let words = '';
+	let password = '';
 	while(password.length <= 16) {
 		word = data[Math.floor(Math.random() * data.length)];
 		if (word.length > 3 && word.length < 8) {
@@ -37,9 +37,9 @@ function createString(data) {
 }
 
 function generatePassword() {
-	var retArray = createString(data.commonWords);
-	var password = retArray[0];
-	var words = retArray[1];
+	let retArray = createString(data.commonWords);
+	let password = retArray[0];
+	let words = retArray[1];
 	document.getElementById('password-field').value = password;
 	// console.log(`Password is: ${password}`);
 	document.getElementById('words').innerHTML = words;
@@ -47,7 +47,7 @@ function generatePassword() {
 }
 
 function copyPass() {
-	var copyText = document.getElementById('password-field');
+	let copyText = document.getElementById('password-field');
 	copyText.select();
 	document.execCommand("copy");
 	// alert("Copied the text: " + copyText.value);
