@@ -1,16 +1,17 @@
 // Get JSON word list
 let request = new XMLHttpRequest();
+let data = {};
 request.open('GET', 'https://raw.githubusercontent.com/dariusk/corpora/master/data/words/common.json', true);
 request.onload = function() {
 	if (request.status >= 200 && request.status < 400) {
 		data = JSON.parse(request.responseText);
 		// console.log("Data successfully fetched.");
 	} else {
-		console.log('Error fetching data.');
-	}
+		console.error('Error fetching data.');
+	};
 }
 request.onerror = function() {
-	console.log('Error fetching data.');
+	console.error('Error fetching data.');
 }
 request.send();
 
@@ -19,6 +20,7 @@ function createString(data) {
 	let symbols = ['!', '@', '$', '&', '#', '?'];
 	let symbol = symbols[Math.floor(Math.random() * symbols.length)];
 	let words = '';
+	let word = '';
 	let password = '';
 	while(password.length <= 16) {
 		word = data[Math.floor(Math.random() * data.length)];
