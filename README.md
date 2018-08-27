@@ -1,5 +1,5 @@
 # pwgen
-A password generator that create strong and easy-to-remember passwords
+A password generator that creates strong and easy-to-remember passwords
 
 ## What it is
 Pwgen is much of a personal project written in pure JavaScript that generates easy to remember passwords which are really strong too. The passwords are a combination of common English words, numbers, and commonly-used symbols.
