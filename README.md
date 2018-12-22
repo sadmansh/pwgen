@@ -1,14 +1,44 @@
-# pwgen
-A password generator that creates strong and easy-to-remember passwords
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## What it is
-Pwgen is much of a personal project written in pure JavaScript that generates easy to remember passwords which are really strong too. The passwords are a combination of common English words, numbers, and commonly-used symbols.
+## Available Scripts
 
-## What makes the passwords strong?
-Let's assume you'd otherwise choose a password 12 characters long from a set of 92 characters (26 small letters, 26 capital letters, 10 digits, 30 symbols). You'd have `92^12 = 3.68E23` combinations. This password generator chooses from a set of 996 characters, so there are `996^16 = 9.38E47` combinations. Both are theoretically 'strong' passwords, but passwords made up of commonly used words are much harder to guess, `2.55E24` times, to be precise. Also, it's easier to for you to remember than a string of random characters, which, in most cases, are not random at all if they're not generated. 
+In the project directory, you can run:
 
-## Todo
-1. Move over to react or vue
-2. Use the genius.com api
-3. Use the haveibeenpwned.com api
-4. Thassit.
+### `npm start`
+
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
