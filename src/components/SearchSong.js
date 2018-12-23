@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 class SearchSong extends Component {
+    genius() {
+        
+    }
+
     render() {
         return (
             <div className="search">
