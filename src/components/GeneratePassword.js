@@ -6,56 +6,45 @@ class GeneratePassword extends Component {
 		this.state = { 
 			passGenerated: true,
 			password: '',
-			words: ''
+			words: {},
+			isLoading: false
 		};
 
-		this.generate = this.generate.bind(this);
+		// this.generate = this.generate.bind(this);
 	}
 
-	componentDidMount() {
+	getCommonWords() {
 		fetch('https://raw.githubusercontent.com/dariusk/corpora/master/data/words/common.json')
-			.then(response => response.json())
-			.then(json => this.setState({ data: json }));
-	}
-
-	generate() {
-		// let newPass = 'Skylinesplitsin2!';
-		let retArray = createString(this.data.commonWords);
-		let newPass = retArray[0];
-
-		this.setState(state => ({
-			passGenerated: false,
-			password: newPass
-		}));
+			.then(function(response) {
+				return response.json();
+			})
+			.then(function(data) {
+				console.log(JSON.stringify(data.commonWords));
+				generate(data);
+			});
 	}
 
 	render() {
 		return (
-			<div className="Generator">
+			<div className="generator">
 				<input type="text" placeholder="Your password..." defaultValue={this.state.password}/>
-				<button onClick={this.generate}>{this.state.passGenerated ? 'Generate Password' : 'Get Another'}</button>
+				<button onClick={this.getCommonWords}>{this.state.passGenerated ? 'Generate Password' : 'Get Another'}</button>
 			</div>
 		)
 	}
 }
 
-// let request = new XMLHttpRequest();
-// let data = {};
-// request.open('GET', 'https://raw.githubusercontent.com/dariusk/corpora/master/data/words/common.json', true);
-// request.onload = function() {
-// 	if (request.status >= 200 && request.status < 400) {
-// 		data = JSON.parse(request.responseText);
-// 		// console.log("Data successfully fetched.");
-// 	} else {
-// 		console.error('Error fetching data.');
-// 	};
-// }
-// request.onerror = function() {
-// 	console.error('Error fetching data.');
-// }
-// request.send();
+function generate(x) {
+	let retArray = createString(x.commonWords);
+	let password = retArray[0];
+	let words = retArray[1];
+	// document.getElementById('password-field').value = password;
+	console.log(`Password is: ${password}`);
+	// document.getElementById('words').innerHTML = words;
+}
 
 function createString(data) {
+	console.log(data);
 	let numbers = Math.floor(Math.random() * 99);
 	let symbols = ['!', '@', '$', '&', '#', '?'];
 	let symbol = symbols[Math.floor(Math.random() * symbols.length)];
