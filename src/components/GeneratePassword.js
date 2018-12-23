@@ -5,15 +5,22 @@ class GeneratePassword extends Component {
 		super(props);
 		this.state = { 
 			passGenerated: true,
-			password: ''
+			password: '',
+			words: ''
 		};
 
 		this.generate = this.generate.bind(this);
 	}
 
+	componentDidMount() {
+		fetch('https://raw.githubusercontent.com/dariusk/corpora/master/data/words/common.json')
+			.then(response => response.json())
+			.then(data => this.setState({ words: data.words }));
+	}
+
 	generate() {
 		// let newPass = 'Skylinesplitsin2!';
-		let retArray = createString(data.commonWords);
+		let retArray = createString(this.words.commonWords);
 		let newPass = retArray[0];
 
 		this.setState(state => ({
@@ -32,21 +39,21 @@ class GeneratePassword extends Component {
 	}
 }
 
-let request = new XMLHttpRequest();
-let data = {};
-request.open('GET', 'https://raw.githubusercontent.com/dariusk/corpora/master/data/words/common.json', true);
-request.onload = function() {
-	if (request.status >= 200 && request.status < 400) {
-		data = JSON.parse(request.responseText);
-		// console.log("Data successfully fetched.");
-	} else {
-		console.error('Error fetching data.');
-	};
-}
-request.onerror = function() {
-	console.error('Error fetching data.');
-}
-request.send();
+// let request = new XMLHttpRequest();
+// let data = {};
+// request.open('GET', 'https://raw.githubusercontent.com/dariusk/corpora/master/data/words/common.json', true);
+// request.onload = function() {
+// 	if (request.status >= 200 && request.status < 400) {
+// 		data = JSON.parse(request.responseText);
+// 		// console.log("Data successfully fetched.");
+// 	} else {
+// 		console.error('Error fetching data.');
+// 	};
+// }
+// request.onerror = function() {
+// 	console.error('Error fetching data.');
+// }
+// request.send();
 
 function createString(data) {
 	let numbers = Math.floor(Math.random() * 99);
