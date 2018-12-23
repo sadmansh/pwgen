@@ -15,12 +15,12 @@ class GeneratePassword extends Component {
 	componentDidMount() {
 		fetch('https://raw.githubusercontent.com/dariusk/corpora/master/data/words/common.json')
 			.then(response => response.json())
-			.then(data => this.setState({ words: data.words }));
+			.then(json => this.setState({ data: json }));
 	}
 
 	generate() {
 		// let newPass = 'Skylinesplitsin2!';
-		let retArray = createString(this.words.commonWords);
+		let retArray = createString(this.data.commonWords);
 		let newPass = retArray[0];
 
 		this.setState(state => ({
