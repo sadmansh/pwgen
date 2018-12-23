@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import GeneratePassword from './components/GeneratePassword';
 import './App.css';
+import SearchSong from './components/SearchSong';
+import GeneratePassword from './components/GeneratePassword';
 
 class App extends Component {
-	render() {
-		return (
-			<div className="App">
-				<GeneratePassword />
-			</div>
-		);
-	}
+  render() {
+	return (
+		<div className="App">
+			<SearchSong />
+			<GeneratePassword />
+		</div>
+	);
+  }
 }
 
 export default App;
