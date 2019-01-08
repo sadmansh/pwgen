@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Router, Link } from 'react-router-dom';
 
 class SearchSong extends Component {
 	constructor(props) {
@@ -26,6 +27,9 @@ class SearchSong extends Component {
         return (
             <div className="search">
                 <input type="text" placeholder="What's your favorite song?" />
+                <Router>
+                    <Link to="/generate">Next</Link>
+                </Router>
             </div>
         )
     }
