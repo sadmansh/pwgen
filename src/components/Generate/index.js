@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class GeneratePassword extends Component {
+class Generate extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
@@ -32,4 +32,4 @@ class GeneratePassword extends Component {
 	}
 }
 
-export default GeneratePassword;
+export default Generate;

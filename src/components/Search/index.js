@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Router, Link } from 'react-router-dom';
 
-class SearchSong extends Component {
+class Search extends Component {
 	constructor(props) {
 		super(props);
 		// const TOKEN = 'APAXUcA2yL76OQNZedtrYNt2btdbMMofRI56szmzuPMITkYy_-vKEAyVu_F7x7jM';
@@ -35,4 +35,4 @@ class SearchSong extends Component {
     }
 }
 
-export default SearchSong;
+export default Search;
