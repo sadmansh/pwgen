@@ -26,10 +26,8 @@ class Search extends Component {
     render() {
         return (
             <div className="search">
+                <h1>Search</h1>
                 <input type="text" placeholder="What's your favorite song?" />
-                <Router>
-                    <Link to="/generate">Next</Link>
-                </Router>
             </div>
         )
     }

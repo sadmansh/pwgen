@@ -25,6 +25,7 @@ class Generate extends Component {
 	render() {
 		return (
 			<div className="generator">
+				<h1>Generate</h1>
 				<input type="text" placeholder="Your password..." defaultValue={this.state.password}/>
 				<button onClick={this.getCommonWords}>{this.state.passGenerated ? 'Generate Password' : 'Get Another'}</button>
 			</div>
