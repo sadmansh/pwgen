@@ -2,9 +2,9 @@
 	<div id="generate">
 		<div id="generator">
 			<h2>Generate easy-to-remember passwords!</h2>
-			<input type="text" placeholder="Click generate" :value="password.join('')" disabled />
+			<input type="text" placeholder="Click generate below" :value="password.join('')" disabled />
 			<button @click="generatePassword">Generate</button>
-			<button @click="copyPassword">Copy</button>
+			<button @click="copyPassword">{{ copyText }}</button>
 			<p>Here's how you can easily remember your password</p>
 			<span id="words">{{ password.join(' ') }}</span>
 		</div>
@@ -20,7 +20,8 @@ export default {
 		return {
 			common: [],
 			password: [],
-			copied: true
+			copied: true,
+			copyText: 'Copy'
 		};
 	},
 	methods: {
@@ -51,10 +52,15 @@ export default {
 			password[0] = password[0].charAt(0).toUpperCase() + password[0].substr(1);
 			password.push(num, symbol);
 			this.password = password;
+			this.copyText = 'Copy';
 		},
 		copyPassword() {
 			navigator.clipboard.writeText(this.password.join(''));
-			this.copied = true;
+			this.copyText = 'Copied';
+			let that = this;
+			setTimeout(function() {
+				that.copyText = 'Copy';
+			}, 2000);
 		}
 	},
 	created() {
@@ -69,6 +75,7 @@ export default {
 	align-items: center;
 	justify-content: center;
 	padding: 0 2rem;
+	margin: 0 auto;
 	height: 100%;
 	max-width: 1080px;
 
@@ -104,6 +111,7 @@ export default {
 		display: inline-block;
 		margin: 2rem 1rem;
 		padding: 1rem 2rem;
+		width: 130px;
 		border: none;
 		border-radius: 8px;
 		transition: all 300ms ease-out;

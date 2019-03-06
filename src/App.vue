@@ -19,6 +19,12 @@ export default {
 </script>
 
 <style lang="scss">
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 body {
 	margin: 0;
 }
