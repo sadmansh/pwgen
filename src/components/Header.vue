@@ -21,6 +21,7 @@ header {
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 2rem;
+	margin: 0 auto;
 	max-width: 1080px;
 
 	h1 {
