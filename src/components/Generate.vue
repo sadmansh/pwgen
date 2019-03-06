@@ -2,7 +2,14 @@
 	<div id="generate">
 		<div id="generator">
 			<h2>Generate easy-to-remember passwords!</h2>
-			<input type="text" id="pw-output" placeholder="Click generate below" :value="password.join('')" />
+			<input
+				type="text"
+				id="pw-output"
+				placeholder="Click generate below"
+				contenteditable="true"
+				readonly="false"
+				:value="password.join('')"
+			/>
 			<button @click="generatePassword">Generate</button>
 			<button @click="copyPassword">{{ copyText }}</button>
 			<p>Here's how you can easily remember your password</p>
@@ -56,6 +63,20 @@ export default {
 		},
 		copyPassword() {
 			const output = document.getElementById('pw-output');
+			if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+				var editable = output.contentEditable;
+				var readOnly = output.readOnly;
+				output.contentEditable = true;
+				output.readOnly = false;
+				var range = document.createRange();
+				range.selectNodeContents(output);
+				var sel = window.getSelection();
+				sel.removeAllRanges();
+				sel.addRange(range);
+				output.setSelectionRange(0, 999999);
+				output.contentEditable = editable;
+				output.readOnly = readOnly;
+			}
 			output.focus();
 			output.select();
 			document.execCommand('copy');
