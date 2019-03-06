@@ -5,7 +5,7 @@
 			<input type="text" id="pw-output" placeholder="Click generate below" :value="password.join('')" />
 			<button @click="generatePassword">Generate</button>
 			<button @click="copyPassword">{{ copyText }}</button>
-			<button @click="Pwned">Pwned</button>
+			<span id="pwn" v-bind:class="{ pwned: isPwned }"></span>
 			<p>Here's how you can easily remember your password</p>
 			<span id="words">{{ password.join(' ') }}</span>
 		</div>
@@ -23,7 +23,8 @@ export default {
 			common: [],
 			password: [],
 			copied: true,
-			copyText: 'Copy'
+			copyText: 'Copy',
+			isPwned: false
 		};
 	},
 	methods: {
@@ -55,6 +56,7 @@ export default {
 			password.push(num, symbol);
 			this.password = password;
 			this.copyText = 'Copy';
+			this.pwned();
 		},
 		copyPassword() {
 			const output = document.getElementById('pw-output');
@@ -67,16 +69,19 @@ export default {
 				that.copyText = 'Copy';
 			}, 2000);
 		},
-		Pwned() {
+		pwned() {
 			const hash = sha1(document.getElementById('pw-output').value);
-			console.log(hash);
 			let prefix = hash.substr(0, 5);
 			const path = 'https://api.pwnedpasswords.com/range/' + prefix;
 			axios.get(path).then(res => {
 				let lines = res.data.split('\n');
 				for (let i = 0; i < lines.length; i++) {
 					lines[i] = lines[i].substring(0, lines[i].indexOf(':'));
-					if (hash.toUpperCase().endsWith(lines[i])) console.log('PWNED');
+					if (hash.toUpperCase().endsWith(lines[i])) {
+						this.isPwned = true;
+						document.getElementById('pwn').innerHTML =
+							'Sorry, this password was exposed in a data breach. Please generate again.';
+					}
 				}
 			});
 		}
@@ -123,6 +128,23 @@ export default {
 		&:focus {
 			outline: none;
 		}
+	}
+
+	#pwn {
+		display: none;
+		padding: 0.5rem;
+		background-color: crimson;
+		border-radius: 8px;
+		color: #e5e5e5;
+		font-size: 1rem;
+
+		&.pwned {
+			display: block;
+		}
+	}
+
+	#words {
+		font-size: 1.25rem;
 	}
 
 	button {
