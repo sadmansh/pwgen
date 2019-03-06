@@ -2,16 +2,10 @@
 	<div id="generate">
 		<div id="generator">
 			<h2>Generate easy-to-remember passwords!</h2>
-			<input
-				type="text"
-				id="pw-output"
-				placeholder="Click generate below"
-				contenteditable="true"
-				readonly="false"
-				:value="password.join('')"
-			/>
+			<input type="text" id="pw-output" placeholder="Click generate below" :value="password.join('')" />
 			<button @click="generatePassword">Generate</button>
 			<button @click="copyPassword">{{ copyText }}</button>
+			<button @click="Pwned">Pwned</button>
 			<p>Here's how you can easily remember your password</p>
 			<span id="words">{{ password.join(' ') }}</span>
 		</div>
@@ -20,6 +14,7 @@
 
 <script>
 import axios from 'axios';
+import sha1 from 'sha1';
 
 export default {
 	name: 'Generate',
@@ -63,20 +58,6 @@ export default {
 		},
 		copyPassword() {
 			const output = document.getElementById('pw-output');
-			if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
-				var editable = output.contentEditable;
-				var readOnly = output.readOnly;
-				output.contentEditable = true;
-				output.readOnly = false;
-				var range = document.createRange();
-				range.selectNodeContents(output);
-				var sel = window.getSelection();
-				sel.removeAllRanges();
-				sel.addRange(range);
-				output.setSelectionRange(0, 999999);
-				output.contentEditable = editable;
-				output.readOnly = readOnly;
-			}
 			output.focus();
 			output.select();
 			document.execCommand('copy');
@@ -85,6 +66,19 @@ export default {
 			setTimeout(function() {
 				that.copyText = 'Copy';
 			}, 2000);
+		},
+		Pwned() {
+			const hash = sha1(document.getElementById('pw-output').value);
+			console.log(hash);
+			let prefix = hash.substr(0, 5);
+			const path = 'https://api.pwnedpasswords.com/range/' + prefix;
+			axios.get(path).then(res => {
+				let lines = res.data.split('\n');
+				for (let i = 0; i < lines.length; i++) {
+					lines[i] = lines[i].substring(0, lines[i].indexOf(':'));
+					if (hash.toUpperCase().endsWith(lines[i])) console.log('PWNED');
+				}
+			});
 		}
 	},
 	created() {
