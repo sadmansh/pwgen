@@ -2,7 +2,7 @@
 	<div id="generate">
 		<div id="generator">
 			<h2>Generate easy-to-remember passwords!</h2>
-			<input type="text" placeholder="Click generate below" :value="password.join('')" disabled />
+			<input type="text" id="pw-output" placeholder="Click generate below" :value="password.join('')" />
 			<button @click="generatePassword">Generate</button>
 			<button @click="copyPassword">{{ copyText }}</button>
 			<p>Here's how you can easily remember your password</p>
@@ -55,7 +55,10 @@ export default {
 			this.copyText = 'Copy';
 		},
 		copyPassword() {
-			navigator.clipboard.writeText(this.password.join(''));
+			const output = document.getElementById('pw-output');
+			output.focus();
+			output.select();
+			document.execCommand('copy');
 			this.copyText = 'Copied';
 			let that = this;
 			setTimeout(function() {
