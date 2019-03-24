@@ -56,7 +56,9 @@ export default {
 			password.push(num, symbol);
 			this.password = password;
 			this.copyText = 'Copy';
-			this.pwned();
+			if (this.isPwned == false) {
+				document.getElementById('pwn').innerHTML = `This password was never exposed in a data breach. You're good to go!`;
+			}
 		},
 		copyPassword() {
 			const output = document.getElementById('pw-output');
@@ -80,7 +82,7 @@ export default {
 					if (hash.toUpperCase().endsWith(lines[i])) {
 						this.isPwned = true;
 						document.getElementById('pwn').innerHTML =
-							'Sorry, this password was exposed in a data breach. Please generate again.';
+							`Sorry, this password was exposed in a data breach. Please generate again.`;
 					}
 				}
 			});
@@ -131,15 +133,20 @@ export default {
 	}
 
 	#pwn {
-		display: none;
-		padding: 0.5rem;
-		background-color: crimson;
+		display: block;
+		padding: 0.5rem 1rem;
+		background-color: #d8d8d8;
 		border-radius: 8px;
-		color: #e5e5e5;
+		color: #777;
 		font-size: 1rem;
 
-		&.pwned {
-			display: block;
+		.pwned {
+			background-color: crimson;
+			color: #e5e5e5;
+		}
+
+		&:empty {
+			display: none;
 		}
 	}
 
