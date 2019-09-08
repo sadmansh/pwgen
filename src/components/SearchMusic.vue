@@ -2,7 +2,7 @@
 	<div id="results">
 		<input type="text" placeholder="Search music..." v-model="search" @input="searchMusic">
 		<ul class="search-results" v-for="track in results">
-			<li @click="getMusic(track.track.track_id)">{{ track.track.track_name }}</li>
+			<li @click="getMusic(track.track.track_id)">{{ track.track.artist_name }} - {{ track.track.track_name }}</li>
 		</ul>
 		<div class="lyrics">
 			{{ lyrics }}
@@ -28,7 +28,7 @@ export default {
 			axios.get(ApiPath, {
 				params: {
 					apikey: `3fb64d66ca9f6667614d84f7af1edd0f`,
-					q: this.search,
+					q_track: this.search,
 				}
 			})
 			.then(res => {
