@@ -50,7 +50,8 @@ export default {
 			})
 			.then(res => {
 				console.log(res.data.message.body.lyrics.lyrics_body)
-				this.lyrics = res.data.message.body.lyrics.lyrics_body
+				let lyrics = res.data.message.body.lyrics.lyrics_body
+				this.lyrics = lyrics.substring(0, lyrics.length - 70)
 			})
 			.catch(error => {
 				console.error(error)
