@@ -4,8 +4,7 @@
 		<ul class="search-results" v-for="track in results">
 			<li @click="getMusic(track.track.track_id)">{{ track.track.artist_name }} - {{ track.track.track_name }}</li>
 		</ul>
-		<div class="lyrics">
-			{{ lyrics }}
+		<div class="lyrics" v-html="lyrics">
 		</div>
 	</div>
 </template>
@@ -51,7 +50,7 @@ export default {
 			.then(res => {
 				console.log(res.data.message.body.lyrics.lyrics_body)
 				let lyrics = res.data.message.body.lyrics.lyrics_body
-				this.lyrics = lyrics.substring(0, lyrics.length - 70)
+				this.lyrics = lyrics.substring(0, lyrics.length - 70).replace(/(?:\r\n|\r|\n)/g, '<br>')
 			})
 			.catch(error => {
 				console.error(error)
