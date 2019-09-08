@@ -1,17 +1,20 @@
 <template>
 	<div id="app">
-		<Header />
-		<Generate msg="Click to generate" />
+		<!-- <Header /> -->
+		<SearchMusic />
+		<!-- <Generate msg="Click to generate" /> -->
 	</div>
 </template>
 
 <script>
+import SearchMusic from './components/SearchMusic.vue';
 import Generate from './components/Generate.vue';
 import Header from './components/Header.vue';
 
 export default {
 	name: 'app',
 	components: {
+		SearchMusic,
 		Generate,
 		Header
 	}
