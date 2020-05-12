@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-import sha1 from 'sha1';
+import axios from 'axios'
+import sha1 from 'sha1'
 
 export default {
 	name: 'Generate',
@@ -25,73 +25,73 @@ export default {
 			copied: true,
 			copyText: 'Copy',
 			isPwned: false
-		};
+		}
 	},
 	methods: {
 		fetchPassword() {
-			const path = 'https://raw.githubusercontent.com/dariusk/corpora/master/data/words/common.json';
+			const path = 'https://raw.githubusercontent.com/dariusk/corpora/master/data/words/common.json'
 			axios
 				.get(path)
 				.then(res => {
-					this.common = res.data.commonWords;
+					this.common = res.data.commonWords
 				})
 				.catch(error => {
-					console.log(`Fetch error: ${error}`);
-				});
+					console.log(`Fetch error: ${error}`)
+				})
 		},
 		generatePassword(e) {
-			e.preventDefault();
-			let num = Math.floor(Math.random() * 99);
-			let symbols = ['!', '@', '$', '&', '#', '?'];
-			let symbol = symbols[Math.floor(Math.random() * symbols.length)];
-			let word = '';
-			let password = [];
+			e.preventDefault()
+			let num = Math.floor(Math.random() * 99)
+			let symbols = ['!', '@', '$', '&', '#', '?']
+			let symbol = symbols[Math.floor(Math.random() * symbols.length)]
+			let word = ''
+			let password = []
 			while (password.length < 4) {
-				word = this.common[Math.floor(Math.random() * this.common.length)];
+				word = this.common[Math.floor(Math.random() * this.common.length)]
 				if (word.length > 3 && word.length < 8) {
-					password.push(word);
+					password.push(word)
 				}
 			}
-			password[0] = password[0].charAt(0).toUpperCase() + password[0].substr(1);
-			password.push(num, symbol);
-			this.password = password;
-			this.copyText = 'Copy';
-			if (this.isPwned == false) {
-				document.getElementById('pwn').innerHTML = `This password was never exposed in a data breach. You're good to go!`;
-			}
+			password[0] = password[0].charAt(0).toUpperCase() + password[0].substr(1)
+			password.push(num, symbol)
+			this.password = password
+			this.copyText = 'Copy'
+			this.pwned().then(res => {
+				if (this.isPwned == false) {
+					document.getElementById('pwn').innerHTML = `This password was never exposed in a data breach. You're good to go!`
+				} else {
+					document.getElementById('pwn').innerHTML = `Sorry, this password was exposed in a data breach. Please generate again.`
+				}
+			})
 		},
 		copyPassword() {
-			const output = document.getElementById('pw-output');
-			output.focus();
-			output.select();
-			document.execCommand('copy');
-			this.copyText = 'Copied';
-			let that = this;
+			const output = document.getElementById('pw-output')
+			output.focus()
+			output.select()
+			document.execCommand('copy')
+			this.copyText = 'Copied'
+			let that = this
 			setTimeout(function() {
-				that.copyText = 'Copy';
-			}, 2000);
+				that.copyText = 'Copy'
+			}, 2000)
 		},
-		pwned() {
-			const hash = sha1(document.getElementById('pw-output').value);
-			let prefix = hash.substr(0, 5);
-			const path = 'https://api.pwnedpasswords.com/range/' + prefix;
-			axios.get(path).then(res => {
-				let lines = res.data.split('\n');
-				for (let i = 0; i < lines.length; i++) {
-					lines[i] = lines[i].substring(0, lines[i].indexOf(':'));
-					if (hash.toUpperCase().endsWith(lines[i])) {
-						this.isPwned = true;
-						document.getElementById('pwn').innerHTML =
-							`Sorry, this password was exposed in a data breach. Please generate again.`;
-					}
+		async pwned() {
+			const hash = sha1(this.password.join(''))
+			let prefix = hash.substr(0, 5)
+			const res = await axios.get('https://api.pwnedpasswords.com/range/' + prefix)
+			let lines = res.data.split('\n')
+			for (let i = 0; i < lines.length; i++) {
+				lines[i] = lines[i].substring(0, lines[i].indexOf(':'))
+				if (hash.toUpperCase().endsWith(lines[i])) {
+					this.isPwned = true
 				}
-			});
+			}
 		}
 	},
 	created() {
-		this.fetchPassword();
+		this.fetchPassword()
 	}
-};
+}
 </script>
 
 <style lang="scss" scoped>
