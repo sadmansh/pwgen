@@ -1,6 +1,6 @@
 <template>
 	<header>
-		<h1>pwgen</h1>
+		<h1>getpassword</h1>
 		<a href="https://github.com/sadmansh/pwgen" target="+_blank">Fork on GitHub</a>
 	</header>
 </template>
